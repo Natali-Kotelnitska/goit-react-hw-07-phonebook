@@ -1,13 +1,18 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addContact } from 'redux/contacts/contactsActions';
+// import contactsReducer from 'redux/contacts/contactsReducer';
+import {
+  useAddContactMutation,
+  useGetContactsQuery,
+} from 'services/contactsApi';
 import s from './ContactForm.module.css';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  const [addContact] = useAddContactMutation();
+  const { data: contacts } = useGetContactsQuery();
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -26,8 +31,15 @@ const ContactForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-
-    dispatch(addContact({ name, number }));
+    if (
+      contacts.find(
+        contact => contact.name.toLowerCase() === name.toLowerCase()
+      )
+    ) {
+      return alert(`Contact ${name} is already exist`);
+    }
+    addContact({ name, number });
+    // dispatch(addContact({ name, number }));
 
     reset();
   };

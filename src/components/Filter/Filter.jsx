@@ -8,7 +8,7 @@ const Filter = () => {
   const filter = useSelector(getFilter);
   const dispatch = useDispatch();
 
-  const changeFilter = e => dispatch(filterContact(e.target.value));
+  const changeFilter = e => dispatch(filterContact(e.currentTarget.value));
 
   return (
     <div className={s.filterBox}>
