@@ -23,8 +23,8 @@ export default function ContactList() {
       {isError && <p>An error has occurred!</p>}
       {isContacts && (
         <ul className={s.contactsList}>
-          {normalizedContacts.map(({ id, name, phone }) => (
-            <ContactListItem name={name} number={phone} key={id} id={id} />
+          {normalizedContacts.map(({ id, name, phone: number }) => (
+            <ContactListItem name={name} number={number} key={id} id={id} />
           ))}
         </ul>
       )}

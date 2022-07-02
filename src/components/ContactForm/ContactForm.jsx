@@ -1,5 +1,4 @@
 import { useState } from 'react';
-// import contactsReducer from 'redux/contacts/contactsReducer';
 import {
   useAddContactMutation,
   useGetContactsQuery,
