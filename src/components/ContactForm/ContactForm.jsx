@@ -7,7 +7,7 @@ import s from './ContactForm.module.css';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setNumber] = useState('');
 
   // const dispatch = useDispatch();
   const [addContact] = useAddContactMutation();
@@ -20,7 +20,7 @@ const ContactForm = () => {
       case 'name':
         setName(value);
         break;
-      case 'number':
+      case 'phone':
         setNumber(value);
         break;
       default:
@@ -37,7 +37,7 @@ const ContactForm = () => {
     ) {
       return alert(`Contact ${name} is already exist`);
     }
-    addContact({ name, number });
+    addContact({ name, phone });
     // dispatch(addContact({ name, number }));
 
     reset();
@@ -68,8 +68,8 @@ const ContactForm = () => {
         <input
           className={s.input}
           type="tel"
-          name="number"
-          value={number}
+          name="phone"
+          value={phone}
           onChange={handleChange}
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
